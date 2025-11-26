@@ -1,0 +1,13 @@
+FROM openjdk:17-slim
+WORKDIR /app
+
+COPY . .
+
+# Compile both Java files
+RUN javac Calculator.java CalculatorTest.java
+
+# Run tests during image build
+RUN java -ea CalculatorTest
+
+# Default CMD runs interactive calculator
+CMD ["java", "Calculator"]
